@@ -1,21 +1,21 @@
 import Option from "./Option"
 const Select = function ({ selectOptions }) {
-  console.log(selectOptions)
   return (
     <select
+      onChange={selectOptions.onChange}
       className="input"
       name=""
       id="">
       <option
         selected
         disabled
-        value="">
+        value="default">
         -- Select position --
       </option>
       {selectOptions.map((option) => {
-        console.log(option)
         return (
           <Option
+            key={option.id}
             value={option.value}
             text={option.text}
           />

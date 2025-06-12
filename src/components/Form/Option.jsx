@@ -1,4 +1,10 @@
-const Option = function ({ value, text }) {
-  return <option value={value}>{text}</option>
+const Option = function ({ value, text, id }) {
+  return (
+    <option
+      key={id}
+      value={value}>
+      {text}
+    </option>
+  )
 }
 export default Option

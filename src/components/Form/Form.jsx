@@ -5,20 +5,29 @@ const Form = function ({ inputs }) {
   const [selectOptions, setOptions] = useState([
     {
       id: 1,
-      value: "",
-      text: "Option 1"
+      value: "Admin",
+      text: "Admin"
     },
     {
       id: 2,
-      value: "",
-      text: "Option 2"
+      value: "Developer",
+      text: "Developer"
     },
     {
       id: 3,
-      value: "",
-      text: "Option 3"
+      value: "QA",
+      text: "QA"
+    },
+    {
+      id: 4,
+      value: "DevOps",
+      text: "DevOps"
     }
   ])
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    console.log(name, value)
+  }
   return (
     <form
       className="form"
@@ -26,12 +35,18 @@ const Form = function ({ inputs }) {
       {inputs.map((input) => {
         return (
           <Input
+            key={input.id}
+            name={input.name}
             type={input.type}
             placeholder={input.placeholder}
+            onChange={handleChange}
           />
         )
       })}
-      <Select selectOptions={selectOptions} />
+      <Select
+        selectOptions={selectOptions}
+        onChange={handleChange}
+      />
 
       <button className="btn">Add</button>
     </form>

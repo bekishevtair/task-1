@@ -7,14 +7,17 @@ function App() {
     {
       id: 1,
       type: "text",
+      name: "name",
       placeholder: "Name"
     },
     {
       id: 2,
       type: "tel",
+      name: "phone",
       placeholder: "Phone Number"
     }
   ])
+
   return (
     <div>
       <section className="section">
@@ -24,6 +27,9 @@ function App() {
             <div className="wrapper">
               <Form inputs={inputs} />
             </div>
+          </div>
+          <div className="row">
+            <div className="wrapper"></div>
           </div>
         </div>
       </section>
