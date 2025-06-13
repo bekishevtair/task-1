@@ -1,10 +1,10 @@
 import Option from "./Option"
-const Select = function ({ selectOptions }) {
+const Select = function ({ selectOptions, onChange }) {
   return (
     <select
-      onChange={selectOptions.onChange}
+      onChange={onChange}
       className="input"
-      name=""
+      name="select"
       id="">
       <option
         selected

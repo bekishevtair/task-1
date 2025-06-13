@@ -1,3 +1,5 @@
+import "./index.scss";
+
 const Input = function (props) {
   return (
     <input

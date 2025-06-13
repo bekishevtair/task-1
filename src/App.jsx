@@ -1,23 +1,8 @@
-import { useState } from "react"
-import "./index.scss"
-import Form from "./components/Form/Form"
+import "./index.scss";
+import Form from "./components/ui/Form";
+import { inputsList } from "./constats";
 
 function App() {
-  const [inputs, setInput] = useState([
-    {
-      id: 1,
-      type: "text",
-      name: "name",
-      placeholder: "Name"
-    },
-    {
-      id: 2,
-      type: "tel",
-      name: "phone",
-      placeholder: "Phone Number"
-    }
-  ])
-
   return (
     <div>
       <section className="section">
@@ -25,7 +10,7 @@ function App() {
         <div className="container">
           <div className="row">
             <div className="wrapper">
-              <Form inputs={inputs} />
+              <Form inputsList={inputsList} />
             </div>
           </div>
           <div className="row">
@@ -34,7 +19,7 @@ function App() {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
