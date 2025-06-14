@@ -11,7 +11,6 @@ function App() {
       return [...prev, cardData]
     })
   }
-
   return (
     <div>
       <section className="section">
