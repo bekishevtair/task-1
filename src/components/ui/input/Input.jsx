@@ -1,15 +1,16 @@
-import "./index.scss";
-
-const Input = function (props) {
+import "./index.scss"
+const Input = ({ name, type, placeholder, value, handleChange }) => {
   return (
-    <input
-      key={props.id}
-      className="input"
-      name={props.name}
-      type={props.type}
-      placeholder={props.placeholder}
-      onChange={props.onChange}
-    />
+    <div className="form-row">
+      <input
+        className="input"
+        value={value}
+        type={type}
+        name={name}
+        placeholder={placeholder}
+        onChange={handleChange}
+      />
+    </div>
   )
 }
 export default Input

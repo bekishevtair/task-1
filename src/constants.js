@@ -1,38 +1,27 @@
-const inputsList = [
+const inputs = [
   {
-    id: 1,
-    type: "text",
+    key: "name",
     name: "name",
+    type: "text",
     placeholder: "Name"
   },
   {
-    id: 2,
-    type: "tel",
+    key: "phone",
     name: "phone",
-    placeholder: "Phone Number"
+    type: "tel",
+    placeholder: "Phone"
   }
 ]
-
 const selectOptions = [
   {
-    id: 1,
-    value: "Admin",
-    text: "Admin"
+    position: "admin",
+    text: "Admin",
+    value: "Admin"
   },
   {
-    id: 2,
-    value: "Developer",
-    text: "Developer"
-  },
-  {
-    id: 3,
-    value: "QA",
-    text: "QA"
-  },
-  {
-    id: 4,
-    value: "DevOps",
-    text: "DevOps"
+    position: "developer",
+    text: "Developer",
+    value: "Developer"
   }
 ]
-export { inputsList, selectOptions }
+export { inputs, selectOptions }

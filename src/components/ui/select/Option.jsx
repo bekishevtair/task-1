@@ -1,10 +1,5 @@
-const Option = function ({ value, text, id }) {
-  return (
-    <option
-      key={id}
-      value={value}>
-      {text}
-    </option>
-  )
+import "./index.scss"
+const SelectOptions = ({ value, text }) => {
+  return <option value={value}>{text}</option>
 }
-export default Option
+export default SelectOptions

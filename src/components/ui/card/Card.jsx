@@ -1,24 +1,33 @@
 import "./index.scss"
-const Card = ({ name, phone, position }) => {
+import Input from "../input/Input"
+import Select from "../select/Select"
+import { selectOptions } from "../../../constants"
+const Card = ({ cardInfo }) => {
   return (
     <div className="card">
       <div className="card-row">
-        <h3>
-          <b>Name:</b>
-          <span>{name}</span>
-        </h3>
+        <div className="btn-wrapper">
+          <button></button>
+          <button></button>
+        </div>
       </div>
       <div className="card-row">
-        <h3>
-          <b>Phone:</b>
-          <span>{phone}</span>
-        </h3>
+        <b>Name: </b>
+        <p>{cardInfo.name}</p>
+        <Input value={cardInfo.name} />
       </div>
       <div className="card-row">
-        <h3>
-          <b>Position:</b>
-          <span>{position}</span>
-        </h3>
+        <b>Phone: </b>
+        <p>{cardInfo.phone}</p>
+        <Input value={cardInfo.phone} />
+      </div>
+      <div className="card-row">
+        <b>Position: </b>
+        <p>{cardInfo.position}</p>
+        <Select
+          value={cardInfo.position}
+          selectOptions={selectOptions}
+        />
       </div>
     </div>
   )

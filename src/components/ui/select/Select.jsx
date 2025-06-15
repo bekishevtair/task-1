@@ -1,27 +1,28 @@
 import Option from "./Option"
-const Select = function ({ selectOptions, onChange }) {
+import "./index.scss"
+const Select = ({ selectOptions, value, handleChange }) => {
   return (
     <select
-      onChange={onChange}
-      className="input"
-      name="select"
-      id="">
+      value={value}
+      className="select"
+      name="position"
+      onChange={handleChange}>
       <option
-        selected
-        disabled
-        value="default">
-        -- Select position --
+        value="default"
+        defaultValue>
+        --Select position--
       </option>
-      {selectOptions.map((option) => {
+      {selectOptions.map(({ text, value }) => {
         return (
           <Option
-            key={option.id}
-            value={option.value}
-            text={option.text}
+            key={text}
+            text={text}
+            value={value}
           />
         )
       })}
     </select>
   )
 }
+
 export default Select

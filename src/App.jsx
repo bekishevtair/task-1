@@ -1,45 +1,37 @@
-import "./index.scss"
+import { useState } from "react"
 import Form from "./components/ui/form/Form"
 import Card from "./components/ui/card/Card"
-import { inputsList } from "./constants"
-import { useState } from "react"
-
+import "./App.scss"
 function App() {
   const [cards, setCards] = useState([])
-  const handleCardData = (cardData) => {
+  const createCard = (cardInfo) => {
     setCards((prev) => {
-      return [...prev, cardData]
+      return [...prev, cardInfo]
     })
   }
+
   return (
-    <div>
-      <section className="section">
-        <h1>Task 1</h1>
-        <div className="container">
-          <div className="row">
-            <div className="wrapper">
-              <Form
-                inputsList={inputsList}
-                handleCardData={handleCardData}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="card-container">
-              {cards.map((card) => {
-                return (
-                  <Card
-                    name={card.name}
-                    phone={card.phone}
-                    position={card.select}
-                  />
-                )
-              })}
-            </div>
+    <section className="section">
+      <div className="container">
+        <div className="row">
+          <div className="form-container">
+            <Form onSubmit={createCard} />
           </div>
         </div>
-      </section>
-    </div>
+        <div className="row">
+          <div className="card-container">
+            {cards.map((card) => {
+              return (
+                <Card
+                  key={card.name}
+                  cardInfo={card}
+                />
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
   )
 }
 

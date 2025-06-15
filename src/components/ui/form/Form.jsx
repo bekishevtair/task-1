@@ -1,48 +1,50 @@
-import { useState } from "react"
-import Select from "../select/Select"
 import Input from "../input/Input"
-import { selectOptions } from "../../../constants"
+import Select from "../select/Select"
+import ButtonForm from "../buttonForm/ButtonForm"
+import { inputs, selectOptions } from "../../../constants"
+import { useState } from "react"
 import "./index.scss"
 
-const Form = function ({ inputsList, handleCardData }) {
-  const [card, setCard] = useState({
-    name: "",
-    phone: "",
-    select: ""
-  })
+const Form = ({ onSubmit }) => {
+  const initialvalues = { name: "", phone: "", position: "" }
+  const [cardInfo, setCardInfo] = useState(initialvalues)
+
   const handleChange = (e) => {
     const { name, value } = e.target
-    setCard((prev) => {
+    setCardInfo((prev) => {
       return { ...prev, [name]: value }
     })
   }
-
-  const getCardData = () => {
-    handleCardData(card)
+  const createCard = () => {
+    onSubmit(cardInfo)
+    setCardInfo(initialvalues)
   }
+
   return (
     <div className="form">
-      {inputsList.map((input) => {
+      {inputs.map(({ name, type, placeholder }) => {
         return (
           <Input
-            key={input.id}
-            name={input.name}
-            type={input.type}
-            placeholder={input.placeholder}
-            onChange={handleChange}
+            key={name}
+            name={name}
+            type={type}
+            placeholder={placeholder}
+            value={cardInfo[name]}
+            handleChange={handleChange}
           />
         )
       })}
-      <Select
-        selectOptions={selectOptions}
-        onChange={handleChange}
-      />
 
-      <button
-        onClick={getCardData}
-        className="btn">
-        Add
-      </button>
+      <div className="form-row">
+        <Select
+          value={cardInfo.position}
+          selectOptions={selectOptions}
+          handleChange={handleChange}
+        />
+      </div>
+      <div className="form-row">
+        <ButtonForm onClick={createCard} />
+      </div>
     </div>
   )
 }
