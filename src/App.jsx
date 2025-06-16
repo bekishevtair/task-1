@@ -1,17 +1,18 @@
 import { useState } from "react"
 import Form from "./components/ui/form/Form"
-import Card from "./components/ui/card/Card"
+import Card from "./components/card/Card"
 import "./App.scss"
+import "antd/dist/reset.css" // новая версия
+import { Button } from "antd"
 function App() {
   const [cards, setCards] = useState([])
   const createCard = (cardInfo) => {
-    setCards((prev) => {
-      return [...prev, cardInfo]
-    })
+    setCards([...cards, cardInfo])
   }
 
   return (
     <section className="section">
+      <Button type="primary"> Hellloooooooo</Button>
       <div className="container">
         <div className="row">
           <div className="form-container">
@@ -20,10 +21,10 @@ function App() {
         </div>
         <div className="row">
           <div className="card-container">
-            {cards.map((card) => {
+            {cards.map((card, index) => {
               return (
                 <Card
-                  key={card.name}
+                  key={`card-${index}`}
                   cardInfo={card}
                 />
               )

@@ -6,18 +6,16 @@ import { useState } from "react"
 import "./index.scss"
 
 const Form = ({ onSubmit }) => {
-  const initialvalues = { name: "", phone: "", position: "" }
-  const [cardInfo, setCardInfo] = useState(initialvalues)
+  const initialValues = { name: "", phone: "", position: "" }
+  const [cardInfo, setCardInfo] = useState(initialValues)
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setCardInfo((prev) => {
-      return { ...prev, [name]: value }
-    })
+    setCardInfo({ ...cardInfo, [name]: value })
   }
   const createCard = () => {
     onSubmit(cardInfo)
-    setCardInfo(initialvalues)
+    setCardInfo(initialValues)
   }
 
   return (

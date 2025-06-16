@@ -3,6 +3,9 @@
   margin: 0;
   box-sizing: border-box;
 }
+body {
+  background: url("../website-background.jpg") center center / cover no-repeat;
+}
 .section {
   width: 100%;
 }

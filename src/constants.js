@@ -22,6 +22,16 @@ const selectOptions = [
     position: "developer",
     text: "Developer",
     value: "Developer"
+  },
+  {
+    position: "devops",
+    text: "DevOps",
+    value: "DevOps"
+  },
+  {
+    position: "qa",
+    text: "QA",
+    value: "QA"
   }
 ]
 export { inputs, selectOptions }

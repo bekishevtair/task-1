@@ -9,7 +9,8 @@ const Select = ({ selectOptions, value, handleChange }) => {
       onChange={handleChange}>
       <option
         value="default"
-        defaultValue>
+        defaultValue
+        hidden>
         --Select position--
       </option>
       {selectOptions.map(({ text, value }) => {
