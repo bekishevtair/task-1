@@ -15,22 +15,22 @@ const inputs = [
 const selectOptions = [
   {
     position: "admin",
-    text: "Admin",
+    label: "Admin",
     value: "Admin"
   },
   {
     position: "developer",
-    text: "Developer",
+    label: "Developer",
     value: "Developer"
   },
   {
     position: "devops",
-    text: "DevOps",
+    label: "DevOps",
     value: "DevOps"
   },
   {
     position: "qa",
-    text: "QA",
+    label: "QA",
     value: "QA"
   }
 ]

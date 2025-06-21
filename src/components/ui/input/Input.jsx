@@ -1,16 +1,28 @@
 import "./index.scss"
-const Input = ({ name, type, placeholder, value, handleChange }) => {
+import { Input } from "antd"
+import { UserOutlined, PhoneOutlined } from "@ant-design/icons"
+
+const AppInput = ({ name, type, placeholder, value, handleChange }) => {
   return (
     <div className="form-row">
-      <input
+      <Input
+        size="large"
+        value={value}
+        type={type}
+        name={name}
+        placeholder={placeholder}
+        onChange={handleChange}
+        prefix={type === "text" ? <UserOutlined /> : <PhoneOutlined />}
+      />
+      {/* <input
         className="input"
         value={value}
         type={type}
         name={name}
         placeholder={placeholder}
         onChange={handleChange}
-      />
+      /> */}
     </div>
   )
 }
-export default Input
+export default AppInput

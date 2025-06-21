@@ -1,29 +1,16 @@
-import Option from "./Option"
+import { Select } from "antd"
 import "./index.scss"
-const Select = ({ selectOptions, value, handleChange }) => {
+
+const AppSelect = ({ selectOptions, value, handleChangeOnSelect }) => {
   return (
-    <select
-      value={value}
-      className="select"
-      name="position"
-      onChange={handleChange}>
-      <option
-        value="default"
-        defaultValue
-        hidden>
-        --Select position--
-      </option>
-      {selectOptions.map(({ text, value }) => {
-        return (
-          <Option
-            key={text}
-            text={text}
-            value={value}
-          />
-        )
-      })}
-    </select>
+    <Select
+      value={value || "--Select position--"}
+      size="large"
+      style={{ width: "100%" }}
+      onChange={handleChangeOnSelect}
+      options={selectOptions}
+    />
   )
 }
 
-export default Select
+export default AppSelect

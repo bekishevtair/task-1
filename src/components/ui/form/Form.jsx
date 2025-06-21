@@ -1,28 +1,40 @@
-import Input from "../input/Input"
-import Select from "../select/Select"
+import AppInput from "../input/Input"
+import AppSelect from "../select/Select"
 import ButtonForm from "../buttonForm/ButtonForm"
 import { inputs, selectOptions } from "../../../constants"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { Form } from "antd"
+
 import "./index.scss"
 
-const Form = ({ onSubmit }) => {
+const AppForm = ({ onSubmit }) => {
   const initialValues = { name: "", phone: "", position: "" }
   const [cardInfo, setCardInfo] = useState(initialValues)
+  const [isBtnDisabled, setBtnDisabled] = useState(true)
 
   const handleChange = (e) => {
     const { name, value } = e.target
     setCardInfo({ ...cardInfo, [name]: value })
   }
+  const handleChangeOnSelect = (value) => {
+    setCardInfo({ ...cardInfo, position: value })
+  }
   const createCard = () => {
     onSubmit(cardInfo)
     setCardInfo(initialValues)
+    setBtnDisabled(true)
   }
+  useEffect(() => {
+    Object.values(cardInfo).every((el) => !!el)
+      ? setBtnDisabled(false)
+      : setBtnDisabled(true)
+  }, [cardInfo])
 
   return (
-    <div className="form">
+    <Form className="form">
       {inputs.map(({ name, type, placeholder }) => {
         return (
-          <Input
+          <AppInput
             key={name}
             name={name}
             type={type}
@@ -34,17 +46,20 @@ const Form = ({ onSubmit }) => {
       })}
 
       <div className="form-row">
-        <Select
+        <AppSelect
           value={cardInfo.position}
           selectOptions={selectOptions}
-          handleChange={handleChange}
+          handleChangeOnSelect={handleChangeOnSelect}
         />
       </div>
       <div className="form-row">
-        <ButtonForm onClick={createCard} />
+        <ButtonForm
+          isBtnDisabled={isBtnDisabled}
+          onClick={createCard}
+        />
       </div>
-    </div>
+    </Form>
   )
 }
 
-export default Form
+export default AppForm

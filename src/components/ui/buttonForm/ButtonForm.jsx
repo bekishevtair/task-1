@@ -1,11 +1,16 @@
 import "./index.scss"
-const ButtonForm = ({ onClick }) => {
+import { Button } from "antd"
+
+const ButtonForm = ({ onClick, isBtnDisabled }) => {
   return (
-    <button
+    <Button
+      size="large"
+      disabled={isBtnDisabled}
       className="btn"
-      onClick={onClick}>
+      onClick={onClick}
+      type="primary">
       Add
-    </button>
+    </Button>
   )
 }
 export default ButtonForm

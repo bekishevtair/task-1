@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Form from "./components/ui/form/Form"
+import AppForm from "./components/ui/form/Form"
 import Card from "./components/card/Card"
 import "./App.scss"
 import "antd/dist/reset.css" // новая версия
@@ -12,11 +12,10 @@ function App() {
 
   return (
     <section className="section">
-      <Button type="primary"> Hellloooooooo</Button>
       <div className="container">
         <div className="row">
           <div className="form-container">
-            <Form onSubmit={createCard} />
+            <AppForm onSubmit={createCard} />
           </div>
         </div>
         <div className="row">
