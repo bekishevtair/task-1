@@ -5,6 +5,7 @@ const AppSelect = ({ selectOptions, value, handleChangeOnSelect }) => {
   return (
     <Form.Item
       rules={[{ required: true, message: `Please select your position` }]}
+      name={'position'}
       style={{ width: "100%" }}>
       <Select
         value={value || "--Select position--"}
@@ -12,6 +13,7 @@ const AppSelect = ({ selectOptions, value, handleChangeOnSelect }) => {
         style={{ width: "100%" }}
         onChange={handleChangeOnSelect}
         options={selectOptions}
+        placeholder='Selected position'
       />
     </Form.Item>
   )

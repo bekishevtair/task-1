@@ -8,6 +8,8 @@ import { Form } from "antd"
 import "./index.scss"
 
 const AppForm = ({ onSubmit }) => {
+  const [form] = Form.useForm();
+
   const initialValues = { name: "", phone: "", email: "", position: "" }
   const [cardInfo, setCardInfo] = useState(initialValues)
   const [isBtnDisabled, setBtnDisabled] = useState(true)
@@ -18,7 +20,13 @@ const AppForm = ({ onSubmit }) => {
     position: ""
   })
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
+    try {
+      await form.validateFields()
+    } catch (e) {
+      console.log(e)
+    }
+    // console.log(await form.validateFields())
     const { name, value } = e.target
     const filteredValue = {
       phone: value.replace(/[^+\d]/g, ""),
@@ -51,9 +59,13 @@ const AppForm = ({ onSubmit }) => {
     setCardInfo({ ...cardInfo, position: value })
   }
   const createCard = () => {
-    onSubmit(cardInfo)
-    setCardInfo(initialValues)
-    setBtnDisabled(true)
+    console.log(form, 'form')
+    console.log(form.getFieldsValue())
+
+    onSubmit(form.getFieldsValue());
+    form.resetFields();
+    setBtnDisabled(true);
+    // setCardInfo(initialValues)
   }
 
   useEffect(() => {
@@ -64,7 +76,7 @@ const AppForm = ({ onSubmit }) => {
   }, [cardInfo])
 
   return (
-    <Form className="form">
+    <Form className="form" form={form}>
       {inputs.map(({ name, type, placeholder }) => {
         return (
           <AppInput
