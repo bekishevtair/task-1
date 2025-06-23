@@ -8,6 +8,10 @@ function App() {
   const createCard = (cardInfo) => {
     setCards([...cards, cardInfo])
   }
+  const removeCard = (e) => {
+    console.log(e)
+
+  }
 
   return (
     <section className="section">
@@ -19,10 +23,12 @@ function App() {
         </div>
         <div className="row">
           <div className="card-container">
-            {cards.map((card, index) => {
+            {cards.map((card) => {
               return (
                 <Card
-                  key={`card-${index}`}
+                  onClick={removeCard}
+                  id={`card-${Math.floor(Math.random() * 1000)}`}
+                  key={`card-${Math.floor(Math.random() * 1000)}`}
                   cardInfo={card}
                 />
               )

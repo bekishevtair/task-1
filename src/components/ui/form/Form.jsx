@@ -8,11 +8,13 @@ import { Form } from "antd"
 import "./index.scss"
 
 const AppForm = ({ onSubmit }) => {
-  const initialValues = { name: "", phone: "", position: "" }
+  const initialValues = { name: "", phone: "", email: "", position: "" }
   const [cardInfo, setCardInfo] = useState(initialValues)
   const [isBtnDisabled, setBtnDisabled] = useState(true)
   const [inputStatus, setInputStatus] = useState({
     name: "",
+    phone: "",
+    email: "",
     position: ""
   })
 
@@ -20,7 +22,23 @@ const AppForm = ({ onSubmit }) => {
     const { name, value } = e.target
     const filteredValue = {
       phone: value.replace(/[^+\d]/g, ""),
-      name: value.replace(/[^a-zA-Zа-яА-ЯёЁ\s-]/g, "")
+      name:
+        value
+          .replace(/[^a-zA-Zа-яА-ЯёЁ\s-]/g, "")
+          .charAt(0)
+          .toUpperCase() + value.replace(/[^a-zA-Zа-яА-ЯёЁ\s-]/g, "").slice(1)
+    }
+    if (name === "email") {
+      setCardInfo({ ...cardInfo, [name]: value })
+      setInputStatus({
+        ...inputStatus,
+        [name]:
+          value &&
+          /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(value)
+            ? ""
+            : "error"
+      })
+      return
     }
 
     setCardInfo({ ...cardInfo, [name]: filteredValue[name] })
@@ -39,7 +57,10 @@ const AppForm = ({ onSubmit }) => {
   }
 
   useEffect(() => {
-    setBtnDisabled(!Object.values(cardInfo).every(Boolean))
+    setBtnDisabled(
+      !Object.values(cardInfo).every(Boolean) ||
+        Object.values(inputStatus).some(Boolean)
+    )
   }, [cardInfo])
 
   return (

@@ -1,6 +1,6 @@
 import "./index.scss"
 import { Input, Form } from "antd"
-import { UserOutlined, PhoneOutlined } from "@ant-design/icons"
+import { UserOutlined, PhoneOutlined, MailOutlined } from "@ant-design/icons"
 
 const AppInput = ({ name, type, placeholder, value, handleChange, status }) => {
   return (
@@ -17,7 +17,17 @@ const AppInput = ({ name, type, placeholder, value, handleChange, status }) => {
         type={type}
         placeholder={placeholder}
         onChange={handleChange}
-        prefix={type === "text" ? <UserOutlined /> : <PhoneOutlined />}
+        prefix={
+          type === "text" ? (
+            <UserOutlined />
+          ) : type === "tel" ? (
+            <PhoneOutlined />
+          ) : type === "email" ? (
+            <MailOutlined />
+          ) : (
+            ""
+          )
+        }
       />
     </Form.Item>
   )

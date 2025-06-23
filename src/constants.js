@@ -10,6 +10,12 @@ const inputs = [
     name: "phone",
     type: "tel",
     placeholder: "Phone"
+  },
+  {
+    key: "email",
+    name: "email",
+    type: "email",
+    placeholder: "Email"
   }
 ]
 const selectOptions = [
