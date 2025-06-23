@@ -11,10 +11,23 @@ const AppForm = ({ onSubmit }) => {
   const initialValues = { name: "", phone: "", position: "" }
   const [cardInfo, setCardInfo] = useState(initialValues)
   const [isBtnDisabled, setBtnDisabled] = useState(true)
+  const [inputStatus, setInputStatus] = useState({
+    name: "",
+    position: ""
+  })
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setCardInfo({ ...cardInfo, [name]: value })
+    const filteredValue = {
+      phone: value.replace(/[^+\d]/g, ""),
+      name: value.replace(/[^a-zA-Zа-яА-ЯёЁ\s-]/g, "")
+    }
+
+    setCardInfo({ ...cardInfo, [name]: filteredValue[name] })
+    setInputStatus({
+      ...inputStatus,
+      [name]: filteredValue[name] ? "" : "error"
+    })
   }
   const handleChangeOnSelect = (value) => {
     setCardInfo({ ...cardInfo, position: value })
@@ -24,10 +37,9 @@ const AppForm = ({ onSubmit }) => {
     setCardInfo(initialValues)
     setBtnDisabled(true)
   }
+
   useEffect(() => {
-    Object.values(cardInfo).every((el) => !!el)
-      ? setBtnDisabled(false)
-      : setBtnDisabled(true)
+    setBtnDisabled(!Object.values(cardInfo).every(Boolean))
   }, [cardInfo])
 
   return (
@@ -35,6 +47,7 @@ const AppForm = ({ onSubmit }) => {
       {inputs.map(({ name, type, placeholder }) => {
         return (
           <AppInput
+            status={inputStatus[name]}
             key={name}
             name={name}
             type={type}

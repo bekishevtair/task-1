@@ -1,28 +1,25 @@
 import "./index.scss"
-import { Input } from "antd"
+import { Input, Form } from "antd"
 import { UserOutlined, PhoneOutlined } from "@ant-design/icons"
 
-const AppInput = ({ name, type, placeholder, value, handleChange }) => {
+const AppInput = ({ name, type, placeholder, value, handleChange, status }) => {
   return (
-    <div className="form-row">
+    <Form.Item
+      style={{
+        width: "100%"
+      }}
+      rules={[{ required: true, message: `Please input your ${name}` }]}>
       <Input
-        size="large"
         value={value}
-        type={type}
         name={name}
+        status={status}
+        size="large"
+        type={type}
         placeholder={placeholder}
         onChange={handleChange}
         prefix={type === "text" ? <UserOutlined /> : <PhoneOutlined />}
       />
-      {/* <input
-        className="input"
-        value={value}
-        type={type}
-        name={name}
-        placeholder={placeholder}
-        onChange={handleChange}
-      /> */}
-    </div>
+    </Form.Item>
   )
 }
 export default AppInput

@@ -2,8 +2,7 @@ import { useState } from "react"
 import AppForm from "./components/ui/form/Form"
 import Card from "./components/card/Card"
 import "./App.scss"
-import "antd/dist/reset.css" // новая версия
-import { Button } from "antd"
+import "antd/dist/reset.css"
 function App() {
   const [cards, setCards] = useState([])
   const createCard = (cardInfo) => {

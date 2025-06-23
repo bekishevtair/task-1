@@ -6,7 +6,15 @@
 }
 .card {
   width: 300px;
-  background: #e95151;
+  background: #ec562e;
   border-radius: 30px;
   padding: 30px 20px;
+  &-row {
+    h4 {
+      font-weight: 700;
+    }
+    p {
+      text-transform: capitalize;
+    }
+  }
 }
