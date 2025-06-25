@@ -1,9 +1,9 @@
-import "./index.scss";
-import { Input, Form } from "antd";
-import { UserOutlined, PhoneOutlined, MailOutlined } from "@ant-design/icons";
-import { VALIDATE_DATA } from "../../../constants";
+import "./index.scss"
+import { Input, Form } from "antd"
+import { UserOutlined, PhoneOutlined, MailOutlined } from "@ant-design/icons"
+import { VALIDATE_DATA } from "../../../constants"
 
-const AppInput = ({ name, type, placeholder, value, handleChange, status }) => {
+const AppInput = ({ name, type, placeholder }) => {
   const dataIcons = {
     text: <UserOutlined />,
     tel: <PhoneOutlined />,
@@ -12,39 +12,35 @@ const AppInput = ({ name, type, placeholder, value, handleChange, status }) => {
   return (
     <Form.Item
       style={{
-        width: "100%",
+        width: "100%"
       }}
       name={name}
+      normalize={(value) => {
+        if (type === "tel") return value.replace(/[^\d+]/g, "")
+        if (type === "text")
+          return (
+            value
+              .replace(/[^a-zA-Zа-яА-ЯёЁ\s-]/g, "")
+              .charAt(0)
+              .toUpperCase() +
+            value.replace(/[^a-zA-Zа-яА-ЯёЁ\s-]/g, "").slice(1)
+          )
+        return value
+      }}
       rules={[
         {
           required: true,
-          validator: (_, value) => {
-            switch (type) {
-              case "email":
-                if (!VALIDATE_DATA.email.test(value)) {
-                  return Promise.reject(new Error("Только буквы и цифры"));
-                }
-                return Promise.resolve();
-              case "tel": 
-                return Promise.resolve();
-              case "text": 
-                return Promise.resolve();
-            }
-          },
-        },
-      ]}
-    >
+          message: `Поле "${placeholder}" обязательно`,
+          type: type === "email" ? type : null
+        }
+      ]}>
       <Input
-        value={value}
-        name={name}
-        status={status}
         size="large"
         type={type}
         placeholder={placeholder}
-        onChange={handleChange}
         prefix={dataIcons[type]}
       />
     </Form.Item>
-  );
-};
-export default AppInput;
+  )
+}
+export default AppInput

@@ -8,11 +8,11 @@
   background: #c5c5c5;
   width: 400px;
   border: 2px solid #a8aaa7;
-  &-row {
+  &__row {
     display: flex;
     width: 100%;
   }
-  &-container {
+  &__container {
     display: flex;
     justify-content: center;
     width: 100%;

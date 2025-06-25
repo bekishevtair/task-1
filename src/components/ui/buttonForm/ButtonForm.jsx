@@ -1,13 +1,22 @@
 import "./index.scss"
-import { Button } from "antd"
+import { Button, Form } from "antd"
+import { useEffect, useState } from "react"
 
-const ButtonForm = ({ onClick, isBtnDisabled }) => {
+const ButtonForm = ({ form }) => {
+  const [submittable, setSubmittable] = useState(false)
+  const values = Form.useWatch([], form)
+  useEffect(() => {
+    form
+      .validateFields({ validateOnly: true })
+      .then(() => setSubmittable(true))
+      .catch(() => setSubmittable(false))
+  }, [form, values])
   return (
     <Button
+      htmlType="submit"
       size="large"
-      disabled={isBtnDisabled}
+      disabled={!submittable}
       className="btn"
-      onClick={onClick}
       type="primary">
       Add
     </Button>

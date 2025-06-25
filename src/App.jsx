@@ -6,29 +6,32 @@ import "antd/dist/reset.css"
 function App() {
   const [cards, setCards] = useState([])
   const createCard = (cardInfo) => {
-    setCards([...cards, cardInfo])
+    const newCard = {
+      ...cardInfo,
+      id: Date.now()
+    }
+    setCards([...cards, newCard])
   }
-  const removeCard = (e) => {
-    console.log(e)
-
+  const removeCard = (id) => {
+    setCards((prev) => prev.filter((card) => card.id !== id))
   }
+  console.log(Date.now())
 
   return (
     <section className="section">
       <div className="container">
         <div className="row">
-          <div className="form-container">
+          <div className="form__container">
             <AppForm onSubmit={createCard} />
           </div>
         </div>
         <div className="row">
-          <div className="card-container">
+          <div className="card__container">
             {cards.map((card) => {
               return (
                 <Card
+                  key={card.id}
                   onClick={removeCard}
-                  id={`card-${Math.floor(Math.random() * 1000)}`}
-                  key={`card-${Math.floor(Math.random() * 1000)}`}
                   cardInfo={card}
                 />
               )
