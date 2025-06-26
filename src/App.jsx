@@ -6,18 +6,17 @@ import "./App.scss"
 import "antd/dist/reset.css"
 function App() {
   const [cards, setCards] = useState([])
-  const [modalStatus, setModalStatus] = useState("")
+  const [modalStatus, setModalStatus] = useState(null)
   const [cardToEdit, setCardToEdit] = useState(null)
   const createCard = (cardInfo) => {
     setCards([...cards, cardInfo])
   }
   const editCard = (card) => {
-    console.log(card.id)
     setCardToEdit(card)
     setModalStatus("active")
   }
   const closeModal = () => {
-    setModalStatus("")
+    setModalStatus(null)
   }
 
   const removeCard = (id) => {
@@ -27,7 +26,7 @@ function App() {
     setCards((prev) =>
       prev.map((card) => (card.id === updatedCard.id ? updatedCard : card))
     )
-    setModalStatus("")
+    setModalStatus(null)
     setCardToEdit(null)
   }
 

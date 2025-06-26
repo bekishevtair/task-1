@@ -8,26 +8,24 @@ import { useEffect } from "react"
 
 const AppForm = ({ onSubmit, formType, cardToEdit }) => {
   const [form] = Form.useForm()
-  useEffect(() => {
-    if (cardToEdit) {
-      form.setFieldsValue(cardToEdit)
-    }
-  }, [cardToEdit])
-  const createCard = (cardInfo) => {
+
+  const createOrUpdateCard = (cardInfo) => {
     const finalCard = {
       ...cardToEdit,
       ...cardInfo,
       id: cardToEdit?.id ?? Date.now()
     }
-
     onSubmit(finalCard)
     form.resetFields()
   }
+  useEffect(() => {
+    if (cardToEdit) {
+      form.setFieldsValue(cardToEdit)
+    }
+  }, [cardToEdit])
   return (
     <Form
-      // validateTrigger="onChange"
-      // name="validateOnly"
-      onFinish={createCard}
+      onFinish={createOrUpdateCard}
       className="form"
       form={form}>
       {inputs.map(({ name, type, placeholder }) => {

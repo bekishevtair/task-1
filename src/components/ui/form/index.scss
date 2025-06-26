@@ -5,9 +5,13 @@
   align-items: center;
   padding: 30px;
   border-radius: 30px;
-  background: #c5c5c5;
   width: 400px;
-  border: 2px solid #a8aaa7;
+  backdrop-filter: blur(20px);
+  background: #ffffff17;
+  border: 2px solid #8686864f;
+  box-shadow: inset 0px 10px 40px -30px rgba(204, 204, 204, 0.726);
+  transition: all ease-in-out 0.2s;
+
   &__row {
     display: flex;
     width: 100%;

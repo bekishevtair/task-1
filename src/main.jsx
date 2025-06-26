@@ -8,8 +8,8 @@ createRoot(document.getElementById("root")).render(
     theme={{
       token: {
         colorPrimary: "#4991a1",
-        borderRadius: 10,
-        colorBgContainer: "#fff"
+        borderRadius: 30,
+        colorBgContainer: "#ffffffb7"
       }
     }}>
     <App />

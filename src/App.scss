@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 body {
-  background: url("../website-background.jpg") center center / cover no-repeat;
+  background: url("../background.webp") center center / cover no-repeat;
 }
 .section {
   width: 100%;
@@ -13,6 +13,7 @@ body {
   margin: 0 auto;
   padding: 10px;
   max-width: 1320px;
+  transition: all ease-in-out 0.2s;
 }
 .row {
   display: flex;

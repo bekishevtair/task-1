@@ -1,11 +1,7 @@
 import { Select, Form } from "antd"
 import "./index.scss"
 
-const AppSelect = ({
-  selectOptions
-  // value,
-  // handleChangeOnSelect
-}) => {
+const AppSelect = ({ selectOptions }) => {
   return (
     <Form.Item
       rules={[{ required: true, message: `Please select your position` }]}
@@ -14,7 +10,6 @@ const AppSelect = ({
       <Select
         size="large"
         style={{ width: "100%" }}
-        // onChange={handleChangeOnSelect}
         options={selectOptions}
         placeholder="Selected position"
       />
