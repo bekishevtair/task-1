@@ -17,6 +17,7 @@ body {
 .row {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 .wrapper {
   height: 100%;
@@ -27,5 +28,13 @@ body {
   flex-direction: row;
   &-end {
     justify-content: end;
+  }
+}
+
+.m {
+  &-b {
+    &-4 {
+      margin-bottom: 20px;
+    }
   }
 }

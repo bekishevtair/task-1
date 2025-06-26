@@ -1,15 +1,17 @@
 import "./index.scss"
-const Card = ({ cardInfo, onClick }) => {
+const Card = ({ cardInfo, onRemove, onEdit }) => {
   const { name, phone, email, position, id } = cardInfo
   return (
     <div
       className="card"
       id={id}>
       <div className={`card__row flex flex-end`}>
-        <button className="card__btn card__btn--edit"></button>
+        <button
+          className="card__btn card__btn--edit"
+          onClick={() => onEdit(cardInfo)}></button>
         <button
           className="card__btn card__btn--remove"
-          onClick={() => onClick(id)}></button>
+          onClick={() => onRemove(id)}></button>
       </div>
       <div className={`card__row card__name`}>
         <h4>Name: </h4>

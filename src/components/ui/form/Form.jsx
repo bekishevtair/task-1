@@ -1,24 +1,32 @@
+import "./index.scss"
 import AppInput from "../input/Input"
 import AppSelect from "../select/Select"
 import ButtonForm from "../buttonForm/ButtonForm"
 import { inputs, selectOptions } from "../../../constants"
-import { useEffect, useState } from "react"
 import { Form } from "antd"
+import { useEffect } from "react"
 
-import "./index.scss"
-
-const AppForm = ({ onSubmit }) => {
+const AppForm = ({ onSubmit, formType, cardToEdit }) => {
   const [form] = Form.useForm()
-
+  useEffect(() => {
+    if (cardToEdit) {
+      form.setFieldsValue(cardToEdit)
+    }
+  }, [cardToEdit])
   const createCard = (cardInfo) => {
-    onSubmit(cardInfo)
+    const finalCard = {
+      ...cardToEdit,
+      ...cardInfo,
+      id: cardToEdit?.id ?? Date.now()
+    }
+
+    onSubmit(finalCard)
     form.resetFields()
   }
-
   return (
     <Form
-      validateTrigger="onChange"
-      name="validateOnly"
+      // validateTrigger="onChange"
+      // name="validateOnly"
       onFinish={createCard}
       className="form"
       form={form}>
@@ -37,7 +45,10 @@ const AppForm = ({ onSubmit }) => {
         <AppSelect selectOptions={selectOptions} />
       </div>
       <div className="form__row">
-        <ButtonForm form={form} />
+        <ButtonForm
+          btnType={formType}
+          form={form}
+        />
       </div>
     </Form>
   )

@@ -1,7 +1,6 @@
 import "./index.scss"
 import { Input, Form } from "antd"
 import { UserOutlined, PhoneOutlined, MailOutlined } from "@ant-design/icons"
-import { VALIDATE_DATA } from "../../../constants"
 
 const AppInput = ({ name, type, placeholder }) => {
   const dataIcons = {
@@ -16,7 +15,7 @@ const AppInput = ({ name, type, placeholder }) => {
       }}
       name={name}
       normalize={(value) => {
-        if (type === "tel") return value.replace(/[^\d+]/g, "")
+        if (type === "tel") return value.replace(/[^\d+]/g, "").slice(0, 15)
         if (type === "text")
           return (
             value
@@ -30,7 +29,7 @@ const AppInput = ({ name, type, placeholder }) => {
       rules={[
         {
           required: true,
-          message: `Поле "${placeholder}" обязательно`,
+          message: `Please fulfill your "${placeholder}"`,
           type: type === "email" ? type : null
         }
       ]}>
