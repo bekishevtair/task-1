@@ -1,51 +1,53 @@
 // константы пишутся все с большой буквы
 // INPUTS
 
-const VALIDATE_DATA = {
+const REGEXES = {
   email: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,}$/,
-};
+  phone: /[^\d+]/g,
+  text: /[^a-zA-Zа-яА-ЯёЁ\s-]/g
+}
 
 const inputs = [
   {
     key: "name",
     name: "name",
     type: "text",
-    placeholder: "Name",
+    placeholder: "Name"
   },
   {
     key: "phone",
     name: "phone",
     type: "tel",
-    placeholder: "Phone",
+    placeholder: "Phone"
   },
   {
     key: "email",
     name: "email",
     type: "email",
-    placeholder: "Email",
-  },
-];
+    placeholder: "Email"
+  }
+]
 const selectOptions = [
   {
     position: "admin",
     label: "Admin",
-    value: "Admin",
+    value: "Admin"
   },
   {
     position: "developer",
     label: "Developer",
-    value: "Developer",
+    value: "Developer"
   },
   {
     position: "devops",
     label: "DevOps",
-    value: "DevOps",
+    value: "DevOps"
   },
   {
     position: "qa",
     label: "QA",
-    value: "QA",
-  },
-];
+    value: "QA"
+  }
+]
 
-export { inputs, selectOptions, VALIDATE_DATA };
+export { inputs, selectOptions, REGEXES }

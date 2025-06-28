@@ -1,8 +1,10 @@
 import "./index.scss"
 import { Input, Form } from "antd"
 import { UserOutlined, PhoneOutlined, MailOutlined } from "@ant-design/icons"
+import { REGEXES } from "../../../constants"
 
 const AppInput = ({ name, type, placeholder }) => {
+  const { text, phone } = REGEXES
   const dataIcons = {
     text: <UserOutlined />,
     tel: <PhoneOutlined />,
@@ -15,14 +17,11 @@ const AppInput = ({ name, type, placeholder }) => {
       }}
       name={name}
       normalize={(value) => {
-        if (type === "tel") return value.replace(/[^\d+]/g, "").slice(0, 15)
+        if (type === "tel") return value.replace(phone, "").slice(0, 15)
         if (type === "text")
           return (
-            value
-              .replace(/[^a-zA-Zа-яА-ЯёЁ\s-]/g, "")
-              .charAt(0)
-              .toUpperCase() +
-            value.replace(/[^a-zA-Zа-яА-ЯёЁ\s-]/g, "").slice(1)
+            value.replace(text, "").charAt(0).toUpperCase() +
+            value.replace(text, "").slice(1)
           )
         return value
       }}

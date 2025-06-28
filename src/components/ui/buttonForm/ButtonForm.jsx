@@ -2,7 +2,7 @@ import "./index.scss"
 import { Button, Form } from "antd"
 import { useEffect, useState } from "react"
 
-const ButtonForm = ({ form, btnType }) => {
+const ButtonForm = ({ form, btnType, loading }) => {
   const [submittable, setSubmittable] = useState(false)
   const values = Form.useWatch([], form)
   useEffect(() => {
@@ -14,6 +14,7 @@ const ButtonForm = ({ form, btnType }) => {
   return (
     <Button
       htmlType="submit"
+      loading={loading}
       size="large"
       disabled={!submittable}
       className="btn"

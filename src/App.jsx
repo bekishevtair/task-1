@@ -2,6 +2,7 @@ import { useState } from "react"
 import AppForm from "./components/ui/form/Form"
 import Modal from "./components/modal/Modal"
 import Card from "./components/card/Card"
+import { useEffect } from "react"
 import "./App.scss"
 import "antd/dist/reset.css"
 function App() {
@@ -29,6 +30,16 @@ function App() {
     setModalStatus(null)
     setCardToEdit(null)
   }
+
+  useEffect(() => {
+    const storedCards = localStorage.getItem("cards")
+    if (storedCards) {
+      setCards(JSON.parse(storedCards))
+    }
+  }, [])
+  useEffect(() => {
+    localStorage.setItem("cards", JSON.stringify(cards))
+  }, [cards])
 
   return (
     <>
