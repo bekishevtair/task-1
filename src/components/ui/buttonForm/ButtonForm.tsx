@@ -1,8 +1,16 @@
 import "./index.scss"
 import { Button, Form } from "antd"
 import { useEffect, useState } from "react"
+import type { FormInstance } from "antd/es/form"
 
-const ButtonForm = ({ form, btnType, loading }) => {
+interface ButtonFormProps {
+  form:FormInstance
+  btnType: string
+  loading: boolean
+}
+
+
+const ButtonForm: React.FC<ButtonFormProps> = ({ form, btnType, loading }) => {
   const [submittable, setSubmittable] = useState(false)
   const values = Form.useWatch([], form)
   useEffect(() => {

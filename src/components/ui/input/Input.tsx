@@ -3,7 +3,14 @@ import { Input, Form } from "antd"
 import { UserOutlined, PhoneOutlined, MailOutlined } from "@ant-design/icons"
 import { REGEXES } from "../../../constants"
 
-const AppInput = ({ name, type, placeholder }) => {
+type  InputType= "text" | "tel" | "email"
+interface AppInputProps {
+  name:string
+  type: InputType
+  placeholder:string
+}
+
+const AppInput: React.FC<AppInputProps> = ({ name, type, placeholder }) => {
   const { text, phone } = REGEXES
   const dataIcons = {
     text: <UserOutlined />,
@@ -29,7 +36,7 @@ const AppInput = ({ name, type, placeholder }) => {
         {
           required: true,
           message: `Please fulfill your "${placeholder}"`,
-          type: type === "email" ? type : null
+          type: type === "email" ? type : undefined
         }
       ]}>
       <Input

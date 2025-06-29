@@ -2,15 +2,22 @@ import "./index.scss"
 import AppInput from "../input/Input"
 import AppSelect from "../select/Select"
 import ButtonForm from "../buttonForm/ButtonForm"
+import { CardInfoType } from "../../../types/Card"
 import { inputs, selectOptions } from "../../../constants"
 import { Form } from "antd"
 import { useEffect, useState } from "react"
 
-const AppForm = ({ onSubmit, formType, cardToEdit }) => {
-  const [form] = Form.useForm()
-  const [loading, setLoading] = useState(false)
+interface AppFormProps {
+  onSubmit: (cardInfo: CardInfoType) => void
+  formType: string
+  cardToEdit: CardInfoType | null
+}
 
-  const createOrUpdateCard = (cardInfo) => {
+const AppForm: React.FC<AppFormProps> = ({ onSubmit, formType, cardToEdit }) => {
+  const [form] = Form.useForm()
+  const [loading, setLoading] = useState<boolean>(false)
+
+  const createOrUpdateCard = (cardInfo: CardInfoType) => {
     setLoading(true)
     setTimeout(() => {
       const finalCard = {

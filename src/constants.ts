@@ -1,13 +1,20 @@
-// константы пишутся все с большой буквы
-// INPUTS
+import type { SelectProps } from "antd"
 
 const REGEXES = {
   email: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,}$/,
   phone: /[^\d+]/g,
   text: /[^a-zA-Zа-яА-ЯёЁ\s-]/g
 }
+type InputType = "text" | "tel" | "email"
 
-const inputs = [
+interface InputConfig {
+  key: string
+  name: string
+  type: InputType
+  placeholder: string
+}
+
+const inputs: InputConfig[] = [
   {
     key: "name",
     name: "name",
@@ -27,24 +34,20 @@ const inputs = [
     placeholder: "Email"
   }
 ]
-const selectOptions = [
+const selectOptions: SelectProps['options'] = [
   {
-    position: "admin",
     label: "Admin",
     value: "Admin"
   },
   {
-    position: "developer",
     label: "Developer",
     value: "Developer"
   },
   {
-    position: "devops",
     label: "DevOps",
     value: "DevOps"
   },
   {
-    position: "qa",
     label: "QA",
     value: "QA"
   }

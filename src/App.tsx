@@ -1,18 +1,22 @@
-import { useState } from "react"
+import { useState, useEffect  } from "react"
 import AppForm from "./components/ui/form/Form"
 import Modal from "./components/modal/Modal"
 import Card from "./components/card/Card"
-import { useEffect } from "react"
+import { CardInfoType } from "./types/Card"
 import "./App.scss"
 import "antd/dist/reset.css"
 function App() {
-  const [cards, setCards] = useState([])
-  const [modalStatus, setModalStatus] = useState(null)
-  const [cardToEdit, setCardToEdit] = useState(null)
-  const createCard = (cardInfo) => {
+  const [cards, setCards] = useState<CardInfoType[]>([])
+
+  const [modalStatus, setModalStatus] = useState<string | null>(null)
+
+  const [cardToEdit, setCardToEdit] = useState<CardInfoType | null>(null)
+
+  const createCard = (cardInfo: CardInfoType) => {
     setCards([...cards, cardInfo])
+    
   }
-  const editCard = (card) => {
+  const editCard = (card: CardInfoType) => {
     setCardToEdit(card)
     setModalStatus("active")
   }
@@ -20,10 +24,10 @@ function App() {
     setModalStatus(null)
   }
 
-  const removeCard = (id) => {
+  const removeCard = (id: number) => {
     setCards((prev) => prev.filter((card) => card.id !== id))
   }
-  const saveNewCard = (updatedCard) => {
+  const saveNewCard = (updatedCard: CardInfoType) => {
     setCards((prev) =>
       prev.map((card) => (card.id === updatedCard.id ? updatedCard : card))
     )
@@ -56,6 +60,7 @@ function App() {
               <AppForm
                 formType={"Add Card"}
                 onSubmit={createCard}
+                cardToEdit={null}
               />
             </div>
           </div>
