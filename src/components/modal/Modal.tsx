@@ -1,7 +1,10 @@
 import AppForm from "../ui/form/Form"
 import "./index.scss"
+import cardStore from "../../store/cardStore"
+import { observer } from "mobx-react-lite"
 
-const Modal = ({ modalStatus, closeModal, cardToEdit, saveNewCard }) => {
+const Modal = () => {
+  const { cardToEdit, closeModal, modalStatus, updateCard } = cardStore
   return (
     <div className={`modal ${modalStatus}`}>
       <div className="container">
@@ -16,7 +19,7 @@ const Modal = ({ modalStatus, closeModal, cardToEdit, saveNewCard }) => {
           <AppForm
             cardToEdit={cardToEdit}
             formType={"Save Edits"}
-            onSubmit={saveNewCard}
+            onSubmit={updateCard}
           />
         </div>
       </div>
@@ -24,4 +27,4 @@ const Modal = ({ modalStatus, closeModal, cardToEdit, saveNewCard }) => {
   )
 }
 
-export default Modal
+export default observer(Modal)

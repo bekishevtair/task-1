@@ -13,7 +13,11 @@ interface AppFormProps {
   cardToEdit: CardInfoType | null
 }
 
-const AppForm: React.FC<AppFormProps> = ({ onSubmit, formType, cardToEdit }) => {
+const AppForm: React.FC<AppFormProps> = ({
+  onSubmit,
+  formType,
+  cardToEdit
+}) => {
   const [form] = Form.useForm()
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -23,7 +27,7 @@ const AppForm: React.FC<AppFormProps> = ({ onSubmit, formType, cardToEdit }) => 
       const finalCard = {
         ...cardToEdit,
         ...cardInfo,
-        id: !!cardToEdit?.id ? cardToEdit.id : Date.now()
+        id: !!cardToEdit?.id ? cardToEdit.id : Date.now().toString()
       }
       onSubmit(finalCard)
       form.resetFields()
@@ -36,32 +40,34 @@ const AppForm: React.FC<AppFormProps> = ({ onSubmit, formType, cardToEdit }) => 
     }
   }, [cardToEdit])
   return (
-    <Form
-      onFinish={createOrUpdateCard}
-      className="form"
-      form={form}>
-      {inputs.map(({ name, type, placeholder }) => {
-        return (
-          <AppInput
-            key={name}
-            name={name}
-            type={type}
-            placeholder={placeholder}
-          />
-        )
-      })}
+    <div className="form__container">
+      <Form
+        onFinish={createOrUpdateCard}
+        className="form"
+        form={form}>
+        {inputs.map(({ name, type, placeholder }) => {
+          return (
+            <AppInput
+              key={name}
+              name={name}
+              type={type}
+              placeholder={placeholder}
+            />
+          )
+        })}
 
-      <div className="form__row">
-        <AppSelect selectOptions={selectOptions} />
-      </div>
-      <div className="form__row">
-        <ButtonForm
-          loading={loading}
-          btnType={formType}
-          form={form}
-        />
-      </div>
-    </Form>
+        <div className="form__row">
+          <AppSelect selectOptions={selectOptions} />
+        </div>
+        <div className="form__row">
+          <ButtonForm
+            loading={loading}
+            btnType={formType}
+            form={form}
+          />
+        </div>
+      </Form>
+    </div>
   )
 }
 

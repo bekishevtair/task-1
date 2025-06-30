@@ -1,6 +1,15 @@
 import "./index.scss"
-const Card = ({ cardInfo, onRemove, onEdit }) => {
+import { CardInfoType } from "../../types/Card"
+import { observer } from "mobx-react-lite"
+import cardStore from "../../store/cardStore"
+interface CardProps {
+  cardInfo: CardInfoType
+}
+
+const Card: React.FC<CardProps> = ({ cardInfo }) => {
   const { name, phone, email, position, id } = cardInfo
+  const { removeCard, editCard } = cardStore
+
   return (
     <div
       className="card"
@@ -8,10 +17,10 @@ const Card = ({ cardInfo, onRemove, onEdit }) => {
       <div className={`card__row flex flex-end`}>
         <button
           className="card__btn card__btn--edit"
-          onClick={() => onEdit(cardInfo)}></button>
+          onClick={() => editCard(cardInfo)}></button>
         <button
           className="card__btn card__btn--remove"
-          onClick={() => onRemove(id)}></button>
+          onClick={() => removeCard(id)}></button>
       </div>
       <div className={`card__row card__name`}>
         <h4>Name: </h4>
@@ -32,4 +41,4 @@ const Card = ({ cardInfo, onRemove, onEdit }) => {
     </div>
   )
 }
-export default Card
+export default observer(Card)

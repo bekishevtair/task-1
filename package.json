@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "antd": "^5.26.1",
+    "mobx": "^6.13.7",
+    "mobx-react-lite": "^4.1.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "sass": "^1.89.2"

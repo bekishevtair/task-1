@@ -1,17 +1,10 @@
-.card__container {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
 .card {
-  width: 300px;
   border-radius: 30px;
   padding: 20px 20px;
   backdrop-filter: blur(20px);
   background: #ffffff17;
   border: 2px solid #8686864f;
-  box-shadow: inset 0px 10px 40px -30px rgba(204, 204, 204, 0.726);
+  box-shadow: inset 0px 10px 40px -20px rgba(26, 26, 26, 0.966);
 
   &__row {
     h4 {
@@ -37,6 +30,7 @@
     width: 24px;
     border-radius: 10px;
     padding: 6px 10px;
+    margin-left: 10px;
     font-weight: 700;
     position: relative;
     opacity: 0;

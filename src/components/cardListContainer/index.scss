@@ -1,0 +1,14 @@
+.card__container {
+  display: flex;
+  flex-wrap: wrap;
+  width: fit-content;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  margin: 0 auto;
+  border-radius: 50px;
+  // backdrop-filter: blur(20px);
+  // background: #ffffff17;
+  // border: 2px solid #8686864f;
+  // box-shadow: inset 0px 10px 40px -30px rgba(204, 204, 204, 0.726);
+}
