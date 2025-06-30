@@ -1,14 +1,21 @@
-import AppForm from "./components/ui/form/Form"
-import Modal from "./components/modal/Modal"
-import CardListContainer from "./components/cardListContainer/CardListContainer"
-import cardStore from "./store/cardStore"
-import { observer } from "mobx-react-lite"
-import "./App.scss"
-import "antd/dist/reset.css"
+import AppForm from "./components/ui/form/Form";
+import Modal from "./components/modal/Modal";
+import CardListContainer from "./components/cardListContainer/CardListContainer";
+import cardStore from "./store/cardStore";
+import "./App.scss";
+import "antd/dist/reset.css";
+import { useEffect, useState } from "react";
+import { getData } from "./api/index";
 
 const App = () => {
-  const { createCard } = cardStore
+  const { createCard } = cardStore;
+  const [listCards, setListCards] = useState([]);
 
+  useEffect(() => {
+    getData()
+      .then((res) => setListCards(res))
+      .catch((e) => console.log(e));
+  }, []);
   return (
     <>
       <Modal />
@@ -27,7 +34,7 @@ const App = () => {
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

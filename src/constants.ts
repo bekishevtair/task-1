@@ -1,17 +1,10 @@
 import type { SelectProps } from "antd"
+import { InputConfig } from "./types"
 
 const REGEXES = {
   email: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,}$/,
   phone: /[^\d+]/g,
   text: /[^a-zA-Zа-яА-ЯёЁ\s-]/g
-}
-type InputType = "text" | "tel" | "email"
-
-interface InputConfig {
-  key: string
-  name: string
-  type: InputType
-  placeholder: string
 }
 
 const inputs: InputConfig[] = [
