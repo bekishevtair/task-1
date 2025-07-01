@@ -1,0 +1,55 @@
+{
+  "header": {
+    "logo": "TASK-1"
+  },
+  "section-1": {
+    "title": "Card Manager",
+    "form": {
+      "inputs": [
+        {
+          "name": "name",
+          "type": "text",
+          "placeholder": "Name"
+        },
+        {
+          "name": "phone",
+          "type": "tel",
+          "placeholder": "Phone"
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "placeholder": "Email"
+        }
+      ],
+      "selectOptions": [
+        {
+          "label": "Admin",
+          "value": "Admin"
+        },
+        {
+          "label": "Developer",
+          "value": "Developer"
+        },
+        {
+          "label": "DevOps",
+          "value": "DevOps"
+        },
+        {
+          "label": "QA",
+          "value": "QA"
+        }
+      ],
+      "button": "Add Card"
+    }
+  },
+  "section-2": {
+    "title": "Employees",
+    "card": {
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "jobPosition": "Position"
+    }
+  }
+}

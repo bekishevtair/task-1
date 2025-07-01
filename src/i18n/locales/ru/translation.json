@@ -1,0 +1,55 @@
+{
+  "header": {
+    "logo": "ЗАДАНИЕ-1"
+  },
+  "section-1": {
+    "title": "Управление профилями",
+    "form": {
+      "inputs": [
+        {
+          "name": "name",
+          "type": "text",
+          "placeholder": "Имя"
+        },
+        {
+          "name": "phone",
+          "type": "tel",
+          "placeholder": "Телефон"
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "placeholder": "Почта"
+        }
+      ],
+      "selectOptions": [
+        {
+          "label": "Администратор",
+          "value": "Admin"
+        },
+        {
+          "label": "Разработчик",
+          "value": "Developer"
+        },
+        {
+          "label": "Девопс",
+          "value": "DevOps"
+        },
+        {
+          "label": "Тестировщик",
+          "value": "QA"
+        }
+      ],
+      "button": "Добавить профиль"
+    }
+  },
+  "section-2": {
+    "title": "Сотрудники",
+    "card": {
+      "name": "Имя",
+      "phone": "Телефон",
+      "email": "Почта",
+      "jobPosition": "Должность"
+    }
+  }
+}
