@@ -13,13 +13,13 @@ import { InputConfig } from "../../../types"
 interface AppFormProps {
   onSubmit: (cardInfo: CardInfoType) => void
   formType: string
-  cardToEdit: CardInfoType | null
+  cardToEdit?: CardInfoType | null
 }
 
 const AppForm: React.FC<AppFormProps> = ({
   onSubmit,
   formType,
-  cardToEdit
+  cardToEdit = null
 }) => {
   const { t } = useTranslation()
   const inputs = t("section-1.form.inputs", {

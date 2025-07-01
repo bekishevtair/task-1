@@ -16,7 +16,6 @@ const Card: React.FC<CardProps> = ({ cardInfo }) => {
   const { name, phone, email, position, id } = cardInfo
   const { removeCard, editCard } = cardStore
 
-  console.log(card)
   return (
     <div
       className="card"

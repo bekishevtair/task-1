@@ -17,9 +17,9 @@ const Modal = () => {
         </div>
         <div className="row">
           <AppForm
-            cardToEdit={cardToEdit}
             formType={"Save Edits"}
             onSubmit={updateCard}
+            cardToEdit={cardToEdit}
           />
         </div>
       </div>

@@ -9,25 +9,44 @@ import "antd/dist/reset.css"
 import { useEffect, useState, useTransition } from "react"
 import { getData } from "./api/index"
 import { useTranslation } from "react-i18next"
-import dayjs from "dayjs"
-import enUS from "antd/locale/en_US"
-import ruRU from "antd/locale/ru_RU"
 
 const App = () => {
   const { t, i18n } = useTranslation()
   const { createCard } = cardStore
   const [listCards, setListCards] = useState([])
-  const locale = i18n.language === "ru" ? ruRU : enUS
-  dayjs.locale(i18n.language)
+  const [lang, setLang] = useState("en")
+  const [loaderStatus, setLoaderStatus] = useState("")
+  const [switcherBtnStatus, setSwitcherBtnStatus] = useState("")
+  const changeLang = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const id = e.currentTarget.id
+    setLoaderStatus("active")
+    setTimeout(() => {
+      i18n.changeLanguage(id)
+      setLang(id)
+      setLoaderStatus("")
+    }, 1500)
+  }
+  useEffect(() => {
+    const storedLang = localStorage.getItem("lang")
+    if (storedLang) {
+      document.documentElement.lang = storedLang
+      i18n.changeLanguage(storedLang)
+      setLang(storedLang)
+    }
+  }, [])
+  useEffect(() => {
+    document.documentElement.lang = lang
+    localStorage.setItem("lang", lang.toString())
+  }, [lang])
 
   useEffect(() => {
     getData()
       .then((res) => setListCards(res))
       .catch((e) => console.log(e))
   }, [])
+
   return (
     <ConfigProvider
-      locale={locale}
       theme={{
         token: {
           colorPrimary: "#4991a1",
@@ -35,18 +54,27 @@ const App = () => {
           colorBgContainer: "#ffffffb7"
         }
       }}>
+      <div className={`loader ${loaderStatus}`}>
+        <img
+          width={"140px"}
+          src="./public/Loading.gif"
+          alt=""
+        />
+      </div>
       <Modal />
       <header className="header">
-        <div className="logo">LOGO</div>
+        <div className="logo">{t("header.logo")}</div>
         <div className="lang__switcher">
           <button
-            className="lang__btn lang__btn--switcher"
-            onClick={() => i18n.changeLanguage("ru")}>
+            id="ru"
+            className={`lang__btn lang__btn--switcher ${lang === "ru" ? "active" : ""}`}
+            onClick={(e) => changeLang(e)}>
             RU
           </button>
           <button
-            className="lang__btn lang__btn--switcher"
-            onClick={() => i18n.changeLanguage("en")}>
+            id="en"
+            className={`lang__btn lang__btn--switcher ${lang === "en" ? "active" : ""}`}
+            onClick={(e) => changeLang(e)}>
             EN
           </button>
         </div>
@@ -60,7 +88,6 @@ const App = () => {
             <AppForm
               formType={t("section-1.form.button")}
               onSubmit={createCard}
-              cardToEdit={null}
             />
           </div>
         </div>

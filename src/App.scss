@@ -45,6 +45,9 @@ body {
     box-shadow: inset 0px 10px 40px -20px rgba(26, 26, 26, 0.966);
     transition: all ease-in-out 0.2s;
     cursor: pointer;
+    &.active {
+      background: rgba(255, 255, 255, 0.26);
+    }
   }
 }
 .title {
@@ -60,7 +63,7 @@ body {
 }
 .section {
   width: 100%;
-  padding: 40px 0;
+  padding: 20px 0;
 }
 .container {
   margin: 0 auto;
@@ -93,5 +96,23 @@ body {
     &-4 {
       margin-bottom: 20px;
     }
+  }
+}
+.loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(60px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all ease-in-out 0.4s;
+  z-index: 2;
+  &.active {
+    opacity: 1;
+    visibility: visible;
   }
 }
