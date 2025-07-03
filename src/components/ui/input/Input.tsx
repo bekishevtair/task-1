@@ -2,13 +2,7 @@ import "./index.scss"
 import { Input, Form } from "antd"
 import { UserOutlined, PhoneOutlined, MailOutlined } from "@ant-design/icons"
 import { REGEXES } from "../../../constants"
-
-type  InputType= "text" | "tel" | "email"
-interface AppInputProps {
-  name:string
-  type: InputType
-  placeholder:string
-}
+import AppInputProps from "../../../types/Input"
 
 const AppInput: React.FC<AppInputProps> = ({ name, type, placeholder }) => {
   const { text, phone } = REGEXES
@@ -19,9 +13,6 @@ const AppInput: React.FC<AppInputProps> = ({ name, type, placeholder }) => {
   }
   return (
     <Form.Item
-      style={{
-        width: "100%"
-      }}
       name={name}
       normalize={(value) => {
         if (type === "tel") return value.replace(phone, "").slice(0, 15)

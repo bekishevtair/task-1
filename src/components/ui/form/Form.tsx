@@ -9,12 +9,7 @@ import { useEffect, useState } from "react"
 import { createCard } from "../../../api"
 import { useTranslation } from "react-i18next"
 import { InputConfig } from "../../../types"
-
-interface AppFormProps {
-  onSubmit: (cardInfo: CardInfoType) => void
-  formType: string
-  cardToEdit?: CardInfoType | null
-}
+import AppFormProps from "../../../types/Form"
 
 const AppForm: React.FC<AppFormProps> = ({
   onSubmit,
@@ -42,7 +37,7 @@ const AppForm: React.FC<AppFormProps> = ({
       createCard({
         name: finalCard.name,
         phone: finalCard.phone,
-        jobPosition: finalCard.position
+        jobPosition: finalCard.jobPosition
       })
     }, 1000)
   }

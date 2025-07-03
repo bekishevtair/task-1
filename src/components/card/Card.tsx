@@ -1,12 +1,9 @@
 import "./index.scss"
-import { CardInfoType } from "../../types/Card"
+import { CardProps } from "../../types/Card"
 import { observer } from "mobx-react-lite"
 import cardStore from "../../store/cardStore"
 import { useTranslation } from "react-i18next"
 import { CardInfoLabels } from "../../types/CardInfoLabels"
-interface CardProps {
-  cardInfo: CardInfoType
-}
 
 const Card: React.FC<CardProps> = ({ cardInfo }) => {
   const { t } = useTranslation()

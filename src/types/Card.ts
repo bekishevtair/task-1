@@ -3,5 +3,8 @@ export interface CardInfoType {
   name: string
   phone: string
   email: string
-  position: string
+  jobPosition: string
+}
+export interface CardProps {
+  cardInfo: CardInfoType
 }
