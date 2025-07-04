@@ -23,14 +23,11 @@ const App = () => {
   useEffect(() => {
     getData()
       .then((res) => {
-        console.log(res)
         setListCards(res)
       })
       .catch((e) => console.log(e))
   }, [])
-  useEffect(() => {
-    
-  }, [listCards])
+  useEffect(() => {}, [listCards])
 
   return (
     <ConfigProvider
@@ -63,7 +60,7 @@ const App = () => {
             <h2 className="title title-h2">{t("section-2.title")}</h2>
           </div>
           <div className="row">
-            <CardListContainer cards={listCards} />
+            <CardListContainer />
           </div>
         </div>
       </section>

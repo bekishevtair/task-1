@@ -3,11 +3,12 @@ import { observer } from "mobx-react-lite"
 import cardStore from "../../store/cardStore"
 import "./index.scss"
 
-const CardListContainer = ({ cards }: any) => {
-  // const { cards } = cardStore
+const CardListContainer = () => {
+  const { cards } = cardStore
+
   return (
     <div className="card__container">
-      {cards.map((card: any) => {
+      {cards.map((card) => {
         return (
           <Card
             key={card.id}

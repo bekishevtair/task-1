@@ -10,7 +10,7 @@ const Card: React.FC<CardProps> = ({ cardInfo }) => {
   const card = t("section-2.card", {
     returnObjects: true
   }) as CardInfoLabels
-  const { name, phone, email, position, id } = cardInfo
+  const { name, phone, email, jobPosition, id } = cardInfo
   const { removeCard, editCard } = cardStore
 
   return (
@@ -39,7 +39,7 @@ const Card: React.FC<CardProps> = ({ cardInfo }) => {
       </div>
       <div className={`card__row card__position`}>
         <h4>{card.jobPosition}: </h4>
-        <p>{position}</p>
+        <p>{jobPosition}</p>
       </div>
     </div>
   )
