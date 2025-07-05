@@ -15,11 +15,6 @@
           "name": "phone",
           "type": "tel",
           "placeholder": "Телефон"
-        },
-        {
-          "name": "email",
-          "type": "email",
-          "placeholder": "Почта"
         }
       ],
       "selectOptions": [
@@ -49,7 +44,6 @@
     "card": {
       "name": "Имя",
       "phone": "Телефон",
-      "email": "Почта",
       "jobPosition": "Должность"
     }
   }

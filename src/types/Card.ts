@@ -1,8 +1,7 @@
 export interface CardInfoType {
-  id: string
+  id?: string
   name: string
   phone: string
-  email: string
   jobPosition: string
 }
 export interface CardProps {

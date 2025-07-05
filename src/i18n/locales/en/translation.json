@@ -15,11 +15,6 @@
           "name": "phone",
           "type": "tel",
           "placeholder": "Phone"
-        },
-        {
-          "name": "email",
-          "type": "email",
-          "placeholder": "Email"
         }
       ],
       "selectOptions": [
@@ -49,7 +44,6 @@
     "card": {
       "name": "Name",
       "phone": "Phone",
-      "email": "Email",
       "jobPosition": "Position"
     }
   }

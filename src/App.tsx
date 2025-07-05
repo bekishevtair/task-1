@@ -7,8 +7,6 @@ import Modal from "./components/modal/Modal"
 import cardStore from "./store/cardStore"
 
 import { ConfigProvider } from "antd"
-import { useEffect, useState } from "react"
-import { getData } from "./api/index"
 import { useTranslation } from "react-i18next"
 import { observer } from "mobx-react-lite"
 
@@ -18,16 +16,6 @@ import "antd/dist/reset.css"
 const App = () => {
   const { t } = useTranslation()
   const { createCard } = cardStore
-  const [listCards, setListCards] = useState([])
-
-  useEffect(() => {
-    getData()
-      .then((res) => {
-        setListCards(res)
-      })
-      .catch((e) => console.log(e))
-  }, [])
-  useEffect(() => {}, [listCards])
 
   return (
     <ConfigProvider

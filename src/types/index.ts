@@ -1,4 +1,4 @@
-type InputType = "text" | "tel" | "email"
+type InputType = "text" | "tel"
 
 export interface InputConfig {
   key: string

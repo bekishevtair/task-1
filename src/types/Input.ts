@@ -1,4 +1,4 @@
-type InputType = "text" | "tel" | "email"
+type InputType = "text" | "tel"
 interface AppInputProps {
   name: string
   type: InputType

@@ -4,9 +4,9 @@ import cardStore from "../../store/cardStore"
 import { observer } from "mobx-react-lite"
 
 const Modal = () => {
-  const { cardToEdit, closeModal, modalStatus, updateCard } = cardStore
+  const { cardToEdit, closeModal, isModalActive, updateCard } = cardStore
   return (
-    <div className={`modal ${modalStatus}`}>
+    <div className={`modal ${isModalActive ? "active" : ""}`}>
       <div className="container">
         <div className="flex flex-end m-b-4">
           <button

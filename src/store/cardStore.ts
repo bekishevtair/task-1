@@ -1,43 +1,76 @@
-import { makeAutoObservable } from "mobx"
+import { makeAutoObservable, runInAction } from "mobx"
 import { CardInfoType } from "../types/Card"
+import {
+  getCards,
+  deleteCard as apiDeleteCard,
+  createCard as apiCreateCard,
+  updateCard as apiUpdateCard
+} from "../api"
 
 class CardStore {
   cards: CardInfoType[] = []
-  modalStatus: string | null = null
+  isModalActive: boolean = false
   cardToEdit: CardInfoType | null = null
+  loading: string | null = ""
+
   constructor() {
     makeAutoObservable(this)
-    const storedCards = localStorage.getItem("cards")
-    if (storedCards) {
-      this.cards = JSON.parse(storedCards)
+    this.loadCards()
+  }
+
+  loadCards = async () => {
+    try {
+      const cardsFromBackend = await getCards()
+      runInAction(() => {
+        this.cards = cardsFromBackend
+      })
+    } catch (e) {
+      console.error("Error during loading cards: ", e)
     }
   }
 
-  createCard = (card: CardInfoType) => {
-    this.cards.push(card)
-    this.saveToStorage()
+  createCard = async (card: CardInfoType) => {
+    try {
+      await apiCreateCard({
+        name: card.name,
+        phone: card.phone,
+        jobPosition: card.jobPosition
+      })
+      const cardsFromBackend = await getCards()
+      runInAction(() => {
+        this.cards = cardsFromBackend
+      })
+    } catch (e) {
+      console.error("Failed creating card: ", e)
+    }
   }
   editCard = (card: CardInfoType) => {
     this.cardToEdit = card
-    this.modalStatus = "active"
+    this.isModalActive = true
   }
-  updateCard = (updateCard: CardInfoType) => {
-    this.cards = this.cards.map((card) =>
-      card.id === updateCard.id ? updateCard : card
-    )
-    this.modalStatus = null
-    this.saveToStorage()
+
+  updateCard = async (updatedCard: CardInfoType) => {
+    await apiUpdateCard(updatedCard)
+    const cardsFromBackend = await getCards()
+    runInAction(() => {
+      this.cards = cardsFromBackend
+      this.cardToEdit = null
+      this.isModalActive = false
+    })
   }
-  removeCard = (id: string) => {
-    this.cards = this.cards.filter((card) => card.id !== id)
-    this.saveToStorage()
+  
+  deleteCard = async (id: string) => {
+    try {
+      await apiDeleteCard(id)
+      runInAction(() => {
+        this.cards = this.cards.filter((card) => card.id !== id)
+      })
+    } catch (e) {}
   }
   closeModal = () => {
-    this.modalStatus = null
+    this.isModalActive = false
+    console.log("asdad")
     this.cardToEdit = null
-  }
-  saveToStorage() {
-    localStorage.setItem("cards", JSON.stringify(this.cards))
   }
 }
 

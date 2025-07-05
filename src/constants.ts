@@ -1,8 +1,8 @@
 import type { SelectProps } from "antd"
 import { InputConfig } from "./types"
 
+const URL_CARDS = "http://localhost:8080/task"
 const REGEXES = {
-  email: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,}$/,
   phone: /[^\d+]/g,
   text: /[^a-zA-Zа-яА-ЯёЁ\s-]/g
 }
@@ -19,15 +19,9 @@ const inputs: InputConfig[] = [
     name: "phone",
     type: "tel",
     placeholder: "Phone"
-  },
-  {
-    key: "email",
-    name: "email",
-    type: "email",
-    placeholder: "Email"
   }
 ]
-const selectOptions: SelectProps['options'] = [
+const selectOptions: SelectProps["options"] = [
   {
     label: "Admin",
     value: "Admin"
@@ -46,4 +40,4 @@ const selectOptions: SelectProps['options'] = [
   }
 ]
 
-export { inputs, selectOptions, REGEXES }
+export { inputs, selectOptions, REGEXES, URL_CARDS }

@@ -8,7 +8,7 @@ const Loader = () => {
       <img
         loading="lazy"
         width={"140px"}
-        src="./public/Loading.gif"
+        src="./Loading.gif"
         alt="Loading..."
       />
     </div>

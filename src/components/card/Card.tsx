@@ -10,20 +10,21 @@ const Card: React.FC<CardProps> = ({ cardInfo }) => {
   const card = t("section-2.card", {
     returnObjects: true
   }) as CardInfoLabels
-  const { name, phone, email, jobPosition, id } = cardInfo
-  const { removeCard, editCard } = cardStore
+  const { name, phone, jobPosition, id } = cardInfo
+  const { deleteCard, editCard } = cardStore
 
   return (
-    <div
-      className="card"
-      id={id}>
+    <div className="card">
+      <div className={`card__id`}>
+        <span>{`${id}`}</span>
+      </div>
       <div className={`card__row flex flex-end`}>
         <button
           className="card__btn card__btn--edit"
           onClick={() => editCard(cardInfo)}></button>
         <button
           className="card__btn card__btn--remove"
-          onClick={() => removeCard(id)}></button>
+          onClick={() => id && deleteCard(id)}></button>
       </div>
       <div className={`card__row card__name`}>
         <h4>{card.name}: </h4>
@@ -32,10 +33,6 @@ const Card: React.FC<CardProps> = ({ cardInfo }) => {
       <div className={`card__row card__phone`}>
         <h4>{card.phone}: </h4>
         <p>{phone}</p>
-      </div>
-      <div className={`card__row card__email`}>
-        <h4>{card.email}: </h4>
-        <p>{email}</p>
       </div>
       <div className={`card__row card__position`}>
         <h4>{card.jobPosition}: </h4>

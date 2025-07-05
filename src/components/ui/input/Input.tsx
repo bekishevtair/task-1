@@ -8,8 +8,7 @@ const AppInput: React.FC<AppInputProps> = ({ name, type, placeholder }) => {
   const { text, phone } = REGEXES
   const dataIcons = {
     text: <UserOutlined />,
-    tel: <PhoneOutlined />,
-    email: <MailOutlined />
+    tel: <PhoneOutlined />
   }
   return (
     <Form.Item
@@ -26,8 +25,7 @@ const AppInput: React.FC<AppInputProps> = ({ name, type, placeholder }) => {
       rules={[
         {
           required: true,
-          message: `Please fulfill your "${placeholder}"`,
-          type: type === "email" ? type : undefined
+          message: `Please fulfill your "${placeholder}"`
         }
       ]}>
       <Input

@@ -6,7 +6,7 @@ import { CardInfoType } from "../../../types/Card"
 import { selectOptions } from "../../../constants"
 import { Form } from "antd"
 import { useEffect, useState } from "react"
-import { createCard } from "../../../api"
+
 import { useTranslation } from "react-i18next"
 import { InputConfig } from "../../../types"
 import AppFormProps from "../../../types/Form"
@@ -28,17 +28,11 @@ const AppForm: React.FC<AppFormProps> = ({
     setTimeout(() => {
       const finalCard = {
         ...cardToEdit,
-        ...cardInfo,
-        id: !!cardToEdit?.id ? cardToEdit.id : Date.now().toString()
+        ...cardInfo
       }
       onSubmit(finalCard)
       form.resetFields()
       setLoading(false)
-      createCard({
-        name: finalCard.name,
-        phone: finalCard.phone,
-        jobPosition: finalCard.jobPosition
-      })
     }, 1000)
   }
   useEffect(() => {
