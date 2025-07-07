@@ -45,7 +45,8 @@ const AppForm: React.FC<AppFormProps> = ({
       <Form
         onFinish={createOrUpdateCard}
         className="form"
-        form={form}>
+        form={form}
+        autoComplete={"true"}>
         {inputs.map(({ name, type, placeholder }) => {
           return (
             <AppInput
